@@ -11,9 +11,20 @@
         <a class="navbar-brand" href="/">Microposts</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-controller">
+        
+        
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">SignUp</a></li>
-          <li><a href="#">Login</a></li>
+          <% if logged_in? %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "あなたのプロファイル", user_path(current_user) %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+          </ul>
+          <% else %>
+            <li><%= link_to "Signup", signup_path %></li>
+            <li><%= link_to"Log in", login_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
