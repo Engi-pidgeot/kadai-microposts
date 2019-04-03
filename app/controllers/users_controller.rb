@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.order("created_at DESC").page(params[:page])
     counts(@user)
   end
+  
+  def likes
+    @user = User.find(params[:id])
+    @likedposts = @user.likedposts.order("likes.created_at DESC").page(params[:page])
+  end
 
   def new
     @user = User.new
